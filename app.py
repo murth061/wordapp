@@ -3,7 +3,7 @@ import requests
 import itertools
 from flask_wtf.csrf import CSRFProtect
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import Regexp
 import re
 
@@ -12,7 +12,6 @@ class WordForm(FlaskForm):
         Regexp(r'^[a-z]+$', message="must contain letters only")
     ])
     word_length = SelectField("Length of Word (optional)", choices=[(3,"3"),(4,"4"),(5,"5"),(6,"6"),(7,"7"),(8,"8"),(9,"9"),(10,"10")])
-
     submit = SubmitField("Go")
 
 
@@ -32,7 +31,6 @@ def letters_2_words():
 
     form = WordForm()
     if form.validate_on_submit():
-        #this is getting the data from the form for our use
         letters = form.avail_letters.data
     else:
         return render_template("index.html", form=form)
