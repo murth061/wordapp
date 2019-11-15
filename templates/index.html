@@ -5,6 +5,7 @@
     <form action="/words" method="post">
         {{ form.hidden_tag() }}
         {{ render_field(form.avail_letters) }}
+        {{ render_field(form.avail_letters) }}
         <br />
         {{form.submit()}}
     </form>
