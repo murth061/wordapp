@@ -9,12 +9,14 @@ import re
 
 class WordForm(FlaskForm):
     avail_letters = StringField("Letters", validators= [
-        Regexp(r'^[a-z]+$', message="must contain letters only")
+        Regexp(r'^[a-z]+$', message="must contain letters only"),
     ])
+    #add optional() to make the selections optional
     #word length
-    word_length = SelectField("Length of Word (optional)", choices=[(3,"3"),(4,"4"),(5,"5"),(6,"6"),(7,"7"),(8,"8"),(9,"9"),(10,"10")])
+    word_length = SelectField("Length of Word (optional)", choices=[(3,"3"),(4,"4"),(5,"5"),(6,"6"),(7,"7"),(8,"8"),(9,"9"),(10,"10"), Optional()
+    ])
     #pattern
-    pattern_word = StringField("Pattern choice (optional)", validators=[Regexp(r'^[a-z.]+$', message="must contain letters or dots '.' only")
+    pattern_word = StringField("Pattern choice (optional)", validators=[Regexp(r'^[a-z.]+$', message="must contain letters or dots '.' only"), Optional()
     ])
     submit = SubmitField("Go")
 
