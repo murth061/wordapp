@@ -52,10 +52,10 @@ def letters_2_words():
 
      # if no letters & no pattern
 #    if letters == '' and wordPattern =='' :
-        return render_template("index.html", form=form)
+#        return render_template("index.html", form=form)
      # if length doesn't equal pattern length
 #    if length != len(wordPattern):
-        return render_template("index.html", form=form)
+#        return render_template("index.html", form=form)
 
     word_set = set()
     for l in range(3,len(letters)+1):
