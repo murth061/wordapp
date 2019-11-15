@@ -51,11 +51,11 @@ def letters_2_words():
         good_words = set(x.strip().lower() for x in f.readlines())
 
      # if no letters & no pattern
-#    if letters == '' and wordPattern =='' :
-#        return render_template("index.html", form=form)
-     # if length doesn't equal pattern length
-#    if length != len(wordPattern):
-#        return render_template("index.html", form=form)
+    if letters == '' and wordPattern =='' :
+        return render_template("index.html", form=form)
+     # length doesn't equal pattern length
+    if length != len(wordPattern):
+        return render_template("index.html", form=form)
 
     word_set = set()
     for l in range(3,len(letters)+1):
