@@ -4,7 +4,7 @@ import itertools
 from flask_wtf.csrf import CSRFProtect
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField
-from wtforms.validators import Regexp, Optional
+from wtforms.validators import Regexp
 import re
 
 class WordForm(FlaskForm):
@@ -12,10 +12,10 @@ class WordForm(FlaskForm):
         Regexp(r'^[a-z]+$', message="must contain letters only"),
     ])
     #word length
-    word_length = SelectField("Length of Word (optional)", choices=[(0,"nah"),(3,"3"),(4,"4"),(5,"5"),(6,"6"),(7,"7"),(8,"8"),(9,"9"),(10,"10"),Optional()
+    word_length = SelectField("Length of Word (optional)", choices=[(0,"nah"),(3,"3"),(4,"4"),(5,"5"),(6,"6"),(7,"7"),(8,"8"),(9,"9"),(10,"10")
     ])
     #pattern
-    pattern_word = StringField("Pattern choice (optional)", validators=[Regexp(r'^[a-z.]+$', message="must contain letters or dots '.' only"),Optional()
+    pattern_word = StringField("Pattern choice (optional)", validators=[Regexp(r'^[a-z.]+$', message="must contain letters or dots '.' only")
     ])
     # consider importing optional ^
 
@@ -52,6 +52,13 @@ def letters_2_words():
         #words from sowpods list
         good_words = set(x.strip().lower() for x in f.readlines())
 
+     # if no letters & no pattern
+     if letters == '' and wordPattern =='' :
+         return render_template("index.html", form=form)
+     # if length doesn't equal pattern length
+     if length != len(wordPattern):
+         return render_template("index.html", form=form)
+
     word_set = set()
     for l in range(3,len(letters)+1):
         for word in itertools.permutations(letters,l):
@@ -59,8 +66,8 @@ def letters_2_words():
             #match condition
             if w in good_words:
                 #length condition
-            #    if length != 0:
-            #        if len(w) == length:
+               if length != 0:
+                   if len(w) == length:
                         #pattern condition (pending)
 
                         word_set.add(w)
