@@ -11,8 +11,13 @@ class WordForm(FlaskForm):
     avail_letters = StringField("Letters", validators= [
         Regexp(r'^[a-z]+$', message="must contain letters only")
     ])
+    #word length
     word_length = SelectField("Length of Word (optional)", choices=[(3,"3"),(4,"4"),(5,"5"),(6,"6"),(7,"7"),(8,"8"),(9,"9"),(10,"10")])
+    #pattern
+    pattern_word = StringField("Pattern choice (optional)", validators=[Regexp(r'^[a-z.]+$', message="must contain letters or dots '.' only")
+    ])
     submit = SubmitField("Go")
+
 
 
 csrf = CSRFProtect()
