@@ -11,13 +11,14 @@ class WordForm(FlaskForm):
     avail_letters = StringField("Letters", validators= [
         Regexp(r'^[a-z]+$', message="must contain letters only"),
     ])
-    #add optional() to make the selections optional
     #word length
-    word_length = SelectField("Length of Word (optional)", choices=[(3,"3"),(4,"4"),(5,"5"),(6,"6"),(7,"7"),(8,"8"),(9,"9"),(10,"10"), Optional()
+    word_length = SelectField("Length of Word (optional)", choices=[(0,"nah")(3,"3"),(4,"4"),(5,"5"),(6,"6"),(7,"7"),(8,"8"),(9,"9"),(10,"10"),
     ])
     #pattern
-    pattern_word = StringField("Pattern choice (optional)", validators=[Regexp(r'^[a-z.]+$', message="must contain letters or dots '.' only"), Optional()
+    pattern_word = StringField("Pattern choice (optional)", validators=[Regexp(r'^[a-z.]+$', message="must contain letters or dots '.' only"),
     ])
+    # consider importing optional ^
+
     submit = SubmitField("Go")
 
 
@@ -37,20 +38,31 @@ def index():
 def letters_2_words():
 
     form = WordForm()
+    # when button is clicked
     if form.validate_on_submit():
+        # extract data from form & transform variable
         letters = form.avail_letters.data
+        length = int(form.word_length.data)
+        wordPattern=form.pattern_word.data
+
     else:
         return render_template("index.html", form=form)
 
     with open('sowpods.txt') as f:
+        #words from sowpods list
         good_words = set(x.strip().lower() for x in f.readlines())
 
     word_set = set()
     for l in range(3,len(letters)+1):
         for word in itertools.permutations(letters,l):
             w = "".join(word)
+            #match condition
             if w in good_words:
-                word_set.add(w)
+                #length condition
+                if length != 0:
+                    if len(w) == length:
+                        #pattern condition (pending)
+                        word_set.add(w)
 
     return render_template('wordlist.html',
         wordlist=sorted(word_set),
