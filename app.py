@@ -17,7 +17,6 @@ class WordForm(FlaskForm):
     #pattern
     pattern_word = StringField("Pattern choice (optional)", validators=[Regexp(r'^[a-z.]+$', message="must contain letters or dots '.' only")
     ])
-    # consider importing optional ^
 
     submit = SubmitField("Go")
 
@@ -53,11 +52,11 @@ def letters_2_words():
         good_words = set(x.strip().lower() for x in f.readlines())
 
      # if no letters & no pattern
-     if letters == '' and wordPattern =='' :
-         return render_template("index.html", form=form)
+    if letters == '' and wordPattern =='' :
+        return render_template("index.html", form=form)
      # if length doesn't equal pattern length
-     if length != len(wordPattern):
-         return render_template("index.html", form=form)
+    if length != len(wordPattern):
+        return render_template("index.html", form=form)
 
     word_set = set()
     for l in range(3,len(letters)+1):
@@ -66,8 +65,8 @@ def letters_2_words():
             #match condition
             if w in good_words:
                 #length condition
-               if length != 0:
-                   if len(w) == length:
+                if length != 0:
+                    if len(w) == length:
                         #pattern condition (pending)
 
                         word_set.add(w)
