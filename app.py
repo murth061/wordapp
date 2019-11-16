@@ -75,7 +75,7 @@ def letters_2_words():
                             while(i<=patternLength):
                                 if(word[i] != w[i]):
                                     state = False
-                                if(state = False):
+                                if(state == False):
                                     break
                                 if(i ==patternLength):
                                     word_set.add(w)
