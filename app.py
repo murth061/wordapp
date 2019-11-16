@@ -96,13 +96,13 @@ def letters_2_words():
                                 if(w[j] == wordPattern[j] or wordPattern[j] == '.'):
                                     j+=1
                                     continue
-                                elif(w[i] != wordPattern[j] and wordPattern[j] != '.'):
+                                elif(w[j] != wordPattern[j] and wordPattern[j] != '.'):
                                     break
                                 if(j == (patternLength-1)):
                                     word_set.add(w)
 
 
-                            
+
                     elif(patternLength ==0):
                         if(len(w) == length):
                             word_set.add(w)
