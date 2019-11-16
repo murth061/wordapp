@@ -76,7 +76,7 @@ def letters_2_words():
                         break
                 elif(length != 0):
                     if(patternLength !=0):
-                        if(patternLength != Length):
+                        if(patternLength != length):
                             return render_template("index.html", form=form)
                             #error
                         elif(patternLength == length and len(w) == length):
