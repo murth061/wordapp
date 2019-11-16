@@ -73,16 +73,16 @@ def letters_2_words():
                             i = 0
                             state = True
                             while(i<=patternLength):
-                                if(word[i] != w[i])
+                                if(word[i] != w[i]):
                                     state = False
-                                if(state = False)
+                                if(state = False):
                                     break
                                 if(i ==patternLength):
                                     word_set.add(w)
                         else:
                             word_set.add(w)
 
-                                
+
 
     return render_template('wordlist.html',
         wordlist=sorted(word_set),
