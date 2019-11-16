@@ -72,17 +72,17 @@ def letters_2_words():
                 if(length == 0):
                     if(patternLength ==0):
                         word_set.add(w)
-                    else if (patternLength !=0):
+                    elif (patternLength !=0):
 
                 else if (length != 0):
                     if(patternLength !=0):
                         if(patternLength != Length):
                             return render_template("index.html", form=form)
                             #error
-                        else if (patternLength == length && len(w) == length):
+                        elif (patternLength == length && len(w) == length):
                             #match pattern here for now just add word
                             word_set.add(w)
-                    else if(patternLength ==0):
+                    elif(patternLength ==0):
                         if(len(w) == length):
                             word_set.add(w)
 
