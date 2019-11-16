@@ -73,8 +73,8 @@ def letters_2_words():
                     if(patternLength ==0):
                         word_set.add(w)
                     elif (patternLength !=0):
-
-                else if (length != 0):
+                        break
+                elif(length != 0):
                     if(patternLength !=0):
                         if(patternLength != Length):
                             return render_template("index.html", form=form)
