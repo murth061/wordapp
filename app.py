@@ -80,6 +80,7 @@ def letters_2_words():
                                 j+=1
                                 continue
                             elif(w[j] != wordPattern[j] and wordPattern[j] != '.'):
+                                word_set.add(w)
                                 break
                             if(j == (patternLength-1)):
                                 word_set.add(w)
@@ -97,6 +98,7 @@ def letters_2_words():
                                     j+=1
                                     continue
                                 elif(w[j] != wordPattern[j] and wordPattern[j] != '.'):
+                                    word_set.add(w)
                                     break
                                 if(j == (patternLength-1)):
                                     word_set.add(w)
