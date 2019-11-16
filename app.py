@@ -73,15 +73,36 @@ def letters_2_words():
                     if(patternLength ==0):
                         word_set.add(w)
                     elif(patternLength !=0):
-                        break
+                        #match pattern
+                        j=0
+                        while(j<patternLength):
+                            if(w[j] == wordPattern[j] or wordPattern[j] == '.'):
+                                j+=1
+                                continue
+                            elif(w[i] != wordPattern[j] and wordPattern[j] != '.'):
+                                break
+                            if(j == (patternLength-1)):
+                                word_set.add(w)
+
                 elif(length != 0):
                     if(patternLength !=0):
                         if(patternLength != length):
                             return render_template("index.html", form=form)
                             #error
                         elif(patternLength == length and len(w) == length):
-                            #match pattern here for now just add word
-                            word_set.add(w)
+                            #match pattern
+                            j=0
+                            while(j<patternLength):
+                                if(w[j] == wordPattern[j] or wordPattern[j] == '.'):
+                                    j+=1
+                                    continue
+                                elif(w[i] != wordPattern[j] and wordPattern[j] != '.'):
+                                    break
+                                if(j == (patternLength-1)):
+                                    word_set.add(w)
+
+
+                            
                     elif(patternLength ==0):
                         if(len(w) == length):
                             word_set.add(w)
@@ -91,7 +112,7 @@ def letters_2_words():
 
     return render_template('wordlist.html',
         wordlist=sorted(word_set),
-        name="CS4131")
+        name="Suriya Murthy")
 
 
 
